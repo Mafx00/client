@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { InventoryService } from '../_services/Inventory.service';
+import { Log } from '../models/Log';
 
 @Component({
   selector: 'app-create',
@@ -7,6 +8,7 @@ import { InventoryService } from '../_services/Inventory.service';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit{
+  @Input() logs: Log[] = [];
   @Output() cancerlResgister = new EventEmitter();
   model: any = {}
 
@@ -21,6 +23,7 @@ export class CreateComponent implements OnInit{
     this.inventoryService.create(this.model).subscribe({
       next: response => {
         console.log(response);
+        
         this.cancel();
       },
       //error: error => console.log(error)

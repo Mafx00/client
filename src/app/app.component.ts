@@ -10,8 +10,13 @@ import { InventoryService } from './_services/Inventory.service';
 })
 export class AppComponent implements OnInit{
   batches: any;
+  logs: any;
   model: any = {}
+
   createMode = false;
+  historyMode = false;
+  batchesMode = false;
+  
 
   constructor(private http: HttpClient, private inventoryService : InventoryService) {}
 
@@ -19,14 +24,15 @@ export class AppComponent implements OnInit{
   }
 
   loadBatches() {
-    console.log("LOADED");
     this.http.get('https://localhost:5001/api/batches').subscribe({
       next: response => this.batches = response,
      })
     }
 
     orderBatches(){
-      console.log("ORDERED");
+      this.batchesMode = !this.batchesMode;
+      if(!this.batchesMode) return;
+
       this.http.get('https://localhost:5001/api/batches/order').subscribe({
       next: response => this.batches = response,
       })
@@ -39,16 +45,11 @@ export class AppComponent implements OnInit{
     openCreate() {
       this.createMode = true;    
     }
-    
-    sort() {
-      this.http.get('https://localhost:5001/api/batches/order').subscribe({
-        next: response => this.batches = response,
-        error: error => console.log(error),
-        complete: () => console.log('Request has completed')
-    })
-  }
   
     seeAll() {
+      this.batchesMode = !this.batchesMode;
+      if(!this.batchesMode) return;
+
       this.http.get('https://localhost:5001/api/batches').subscribe({
         next: response => this.batches = response,
         error: error => console.log(error),
@@ -56,12 +57,19 @@ export class AppComponent implements OnInit{
     })
   }
 
-  cancelCreateMode(event: boolean)
-  {
-    this.createMode = event;
+    cancelCreateMode(event: boolean)
+    {
+      this.createMode = event;
   }
   
     seeHistory() {
-     // this.inventoryService.search(this.model).subscribe
-    }
+      this.historyMode = !this.historyMode;
+      if(!this.historyMode) return;
+
+      this.http.get('https://localhost:5001/api/batches/history').subscribe({
+        next: response => this.logs = response,
+        error: error => console.log(error),
+        complete: () => console.log('Request has completed')
+    })    
+  }
 }
