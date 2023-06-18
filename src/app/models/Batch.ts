@@ -1,7 +1,7 @@
 export class Batch {
     id?: number;
     name = "";
-    deliveryDate = "";
-    expirationDate = "";
+    deliveryDate = Date;
+    expirationDate = Date;
     quantity?: number;
 }

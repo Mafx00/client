@@ -11,7 +11,7 @@ import { InventoryService } from './_services/Inventory.service';
 export class AppComponent implements OnInit{
   batches: any;
   model: any = {}
-
+  createMode = false;
 
   constructor(private http: HttpClient, private inventoryService : InventoryService) {}
 
@@ -36,10 +36,10 @@ export class AppComponent implements OnInit{
       //this.inventoryService.search(this.model).subscribe;
     }
   
-    create() {
-      //this.inventoryService.search(this.model).subscribe;
-    
+    openCreate() {
+      this.createMode = true;    
     }
+    
     sort() {
       this.http.get('https://localhost:5001/api/batches/order').subscribe({
         next: response => this.batches = response,
@@ -54,6 +54,11 @@ export class AppComponent implements OnInit{
         error: error => console.log(error),
         complete: () => console.log('Request has completed')
     })
+  }
+
+  cancelCreateMode(event: boolean)
+  {
+    this.createMode = event;
   }
   
     seeHistory() {

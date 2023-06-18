@@ -1,1 +1,37 @@
-<p>create works!</p>
+<div class="d-flex flex-wrap mx-auto justify-content-center mb-3 ">
+    
+    <form #registerForm="ngForm" (ngSubmit)="create()"> 
+    <h2 class="text-center text-primary">Add Batch</h2>
+    <hr>
+    <div class="form-group" style="margin-top: 10px;">
+        <input type="number" class="form-control" name="id" 
+            [(ngModel)]="model.id" placeholder="ID"  >
+    </div>
+
+    <div class="form-group" style="margin-top: 10px;">
+        <input type="text" class="form-control" name="name" 
+            [(ngModel)]="model.name" placeholder="Name"  >
+    </div>
+
+    <div class="form-group" style="margin-top: 10px;">
+        <input type="number" class="form-control" name="quantity" 
+            [(ngModel)]="model.quantity" placeholder="Quantity"  >
+    </div>
+
+    <div class="form-group" style="margin-top: 10px;">Delivery Date
+        <input type="date" class="form-control" name="DeliveryDate" 
+            [(ngModel)]="model.deliveryDate" placeholder="Delivery Date"  >
+    </div>
+
+    <div class="form-group" style="margin-top: 10px;">Expiration Date
+        <input type="date" class="form-control" name="ExpirationDate" 
+            [(ngModel)]="model.expirationDate" placeholder="Expiration Date"  >
+    </div>
+
+
+    <div class="form-group text-center" style="margin-top: 20px;">
+        <button class="btn btn-success mr-2" type="submit">Create</button>
+        <button class="btn btn-default mr-2" (click)="cancel()" type="button">Cancel</button>
+    </div>
+</form>
+</div>
