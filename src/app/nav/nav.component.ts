@@ -33,6 +33,13 @@ export class NavComponent implements OnInit {
   })
 }
 
+orderBatches(){
+  console.log("ORDERED");
+  this.http.get('https://localhost:5001/api/batches/order').subscribe({
+  next: response => this.batches = response,
+  })
+}
+
   seeAll() {
     this.http.get('https://localhost:5001/api/batches').subscribe({
       next: response => this.batches = response,
@@ -42,6 +49,6 @@ export class NavComponent implements OnInit {
 }
 
   seeHistory() {
-   // this.inventoryService.search(this.model).subscribe;
+   // this.inventoryService.search(this.model).subscribe
   }
 }

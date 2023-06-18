@@ -1,3 +1,4 @@
+
 <header class="p-3 mb-3 border-bottom">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -8,9 +9,10 @@
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a class="nav-link px-4">Inventory Management</a></li>
           <li><a href="#" (click)="seeAll()" class="nav-link px-4 link-body-emphasis">Overview</a></li>
-          <li><a href="#" (click)="create()" class="nav-link px-4 link-body-emphasis">Add</a></li>
-          <li><a href="#" (click)="sort()" class="nav-link px-4 link-body-emphasis">Freshness</a></li>
+          <li><a href="#" (click)="sort()" class="nav-link px-4 link-body-emphasis">Add</a></li>
+          <li><a href="#" (click)="orderBatches()" class="nav-link px-4 link-body-emphasis">Freshness</a></li>
           <li><a href="#" (click)="seeHistory()" class="nav-link px-4 link-body-emphasis">History</a></li>
+          <li><a routerLink="/batches-component" routerLinkActive="active" class="nav-link px-4 link-body-emphasis">Link Test</a></li>
         </ul>
 
         <form #loginForm="ngForm" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 "  role="search" (ngSubmit)="search()" >

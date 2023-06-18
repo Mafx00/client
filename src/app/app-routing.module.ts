@@ -1,7 +1,17 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule, createComponent } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { BatchesComponent } from './batches/batches.component';
+import { CreateComponent } from './create/create.component';
+import { AppComponent } from './app.component';
+import { NavComponent } from './nav/nav.component';
+
+const routes: Routes = [
+  { path: '**', component: NavComponent},
+  { path: 'batches-component', component : BatchesComponent },
+  { path: 'create-component', component : CreateComponent },
+ // { path: '**', component: AppComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
