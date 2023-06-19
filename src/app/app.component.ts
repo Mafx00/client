@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Batch } from './models/Batch';
 import { InventoryService } from './_services/Inventory.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +12,13 @@ import { InventoryService } from './_services/Inventory.service';
 export class AppComponent implements OnInit{
   batches: any;
   logs: any;
+  editBatch: any;
   model: any = {}
 
   createMode = false;
   historyMode = false;
   batchesMode = false;
-  
+  editMode = false  
 
   constructor(private http: HttpClient, private inventoryService : InventoryService) {}
 
@@ -45,6 +47,27 @@ export class AppComponent implements OnInit{
     openCreate() {
       this.createMode = true;    
     }
+
+    onEditProduct(id: number) {
+      console.log("edit " + id);
+      this.batchesMode = false;
+      this.editMode = true;  
+
+      this.http.get('https://localhost:5001/api/batches/' + id).subscribe({
+        next: response => this.editBatch = response,
+        error: error => console.log(error),
+        complete: () => console.log('Request has completed')
+    })      
+      console.log(this.editBatch)
+    }
+
+    onDeleteProduct(id: number ) {
+      this.http.delete('https://localhost:5001/api/batches/delete/' + id).subscribe({
+        next: response => this.batches = response,
+        error: error => console.log(error),
+        complete: () => console.log('Request has completed')
+    })
+    }
   
     seeAll() {
       this.batchesMode = !this.batchesMode;
@@ -60,6 +83,10 @@ export class AppComponent implements OnInit{
     cancelCreateMode(event: boolean)
     {
       this.createMode = event;
+  }
+  cancelEditMode(event: boolean)
+  {
+    this.editMode = event;
   }
   
     seeHistory() {

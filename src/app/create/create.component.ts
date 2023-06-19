@@ -26,7 +26,6 @@ export class CreateComponent implements OnInit{
         
         this.cancel();
       },
-      //error: error => console.log(error)
     })
   }
 

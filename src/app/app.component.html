@@ -1,6 +1,6 @@
 <header class="p-3 mb-3 border-bottom">
     <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <div class=" flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
           <svg class="bi me-2" width="40" height="40" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
         </a>
@@ -11,13 +11,7 @@
           <li><a href="#" (click)="openCreate()" class="nav-link px-4 link-body-emphasis">Add</a></li>
           <li><a href="#" (click)="orderBatches()" class="nav-link px-4 link-body-emphasis">Freshness</a></li>
           <li><a href="#" (click)="seeHistory()" class="nav-link px-4 link-body-emphasis">History</a></li>
-          <li><a [routerLink] = "'./batches-component'" routerLinkActive="active" class="nav-link px-4 link-body-emphasis">Link Test</a></li>
         </ul>
-
-
-        <form #loginForm="ngForm" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 "  role="search" (ngSubmit)="search()" >
-          <input type="search" class="form-control" name="username"  [(ngModel)]="model.name"  placeholder="Search..." aria-label="Search">
-        </form>
       </div>
     </div>
   </header>
@@ -35,9 +29,17 @@
   <div *ngIf="batchesMode" class="d-flex">
   <ul class="list-group mx-auto justify-content-center ">
     <li *ngFor="let batch of batches" class="list-group-item float-right "> 
-      {{batch.id}} - {{batch.name}} - Quantity: {{batch.quantity}} - Delivery Date: {{batch.deliveryDate}} - Expiration Date: {{batch.expirationDate}}
+      <div> {{batch.id}} - {{batch.name}} - Quantity: {{batch.quantity}} - Delivery Date: {{batch.deliveryDate}} - Expiration Date: {{batch.expirationDate}}
+        <div class="nav col-12 col-lg-auto me-lg-auto justify-content-center mb-2">
+        <button type="button"  class="btn btn-primary mx-auto"  (click)="onEditProduct(batch.id)">Edit</button><button type="button" class="btn btn-primary mx-auto" (click)="onDeleteProduct(batch)">Delete</button>
+        </div>
+      </div>
     </li>
   </ul>
+  </div>
+
+  <div *ngIf="editMode"> 
+    <app-edit [batchToEdit]="editBatch" (cancelEdit)="cancelEditMode($event)"></app-edit>
   </div>
 
   <div class="container" style="margin-top: 100px;"></div>
@@ -45,7 +47,7 @@
   <div *ngIf="historyMode" class="d-flex">
   <ul class="list-group mx-auto justify-content-center ">
     <li *ngFor="let log of logs" class="list-group-item float-right "> 
-      {{log.id}} - Change: {{log.change}} - Time: {{log.timeStamp}}
+      Batch Id: {{log.batchId}} - Change: {{log.change}} - Time: {{log.timeStamp}}
     </li>
   </ul>
   </div>

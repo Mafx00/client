@@ -9,13 +9,15 @@ import { FormsModule } from '@angular/forms';
 import { BatchesComponent } from './batches/batches.component';
 import { CreateComponent } from './create/create.component';
 import { Routes, RouterModule } from '@angular/router';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     BatchesComponent,
-    CreateComponent
+    CreateComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
