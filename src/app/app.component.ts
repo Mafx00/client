@@ -84,10 +84,10 @@ export class AppComponent implements OnInit{
     {
       this.createMode = event;
   }
-  cancelEditMode(event: boolean)
-  {
-    this.editMode = event;
-  }
+    cancelEditMode(event: boolean)
+    {
+      this.editMode = event;
+    }
   
     seeHistory() {
       this.historyMode = !this.historyMode;
